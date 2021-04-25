@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="./tmp/figma-plugin-ds.css" />
+    <!-- Figma Plugin DS Styles -->
+    <link rel="stylesheet" href="./tmp/styles.css" />
+    <!-- Your Styles -->
+  </head>
+  <body>
+    <div class="p-xxsmall">
+      <!-- Select menu -->
+      <div class="label type--large">Layout direction</div>
+      <select id="layout" class="select-menu mb-xxsmall">
+        <!-- <option value="">Please select a layout...</option> -->
+        <option value="vertical">Vertical</option>
+        <option value="horizontal">Horizontal</option>
+        <!-- <option value="circle">Circle</option> -->
+      </select>
+
+      <!-- <div class="radio">
+        <input
+          id="layout-vertical"
+          type="radio"
+          class="radio__button"
+          value="vertical"
+          name="radioGroup"
+          checked
+        />
+        <label for="layout-vertical" class="radio__label">Vertical</label>
+      </div>
+      <div class="radio">
+        <input
+          id="layout-horizontal"
+          type="radio"
+          class="radio__button"
+          value="horizontal"
+          name="radioGroup"
+        />
+        <label for="layout-horizontal" class="radio__label">Horizontal</label>
+      </div> -->
+
+      <!-- Gap input -->
+      <div class="label">Gap</div>
+      <div class="input input--with-icon mb-xxsmall">
+        <div class="icon">#</div>
+        <input id="gap" type="input" class="input__field" value="16" />
+      </div>
+
+      <!-- Buttons -->
+      <div class="flex p-xxsmall mb-xsmall">
+        <button id="cancel" class="button button--secondary mr-xxsmall">
+          Cancel
+        </button>
+        <button id="align-objects" class="button button--primary">
+          Align objects
+        </button>
+      </div>
+    </div>
+
+    <script src="./tmp/scripts.js"></script>
+  </body>
+</html>
