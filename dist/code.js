@@ -5,8 +5,8 @@
 // callback. The callback will be passed the "pluginMessage" property of the
 // posted message.
 figma.showUI(__html__, { width: 232, height: 248 });
-let gap;
-//VERTICAL ALIGNMENT
+let spacing;
+/***** VERTICAL ALIGNMENT *****/
 function alignVertical() {
     //check if there are enough objects selected
     if (figma.currentPage.selection.length < 2) {
@@ -19,14 +19,14 @@ function alignVertical() {
     //elements selected
     let nodeSelected = figma.currentPage.selection;
     for (const selected of nodeSelected) {
-        let gapY = selected.height + gap;
+        let spacingY = selected.height + spacing;
         selected.x = positionX;
         selected.y = positionY;
-        positionY += gapY;
+        positionY += spacingY;
     }
     figma.notify("Objects vertically aligned!");
 }
-//HORIZONTAL ALIGNMENT
+/***** HORIZONTAL ALIGNMENT *****/
 function alignHorizontal() {
     //check if there are enough objects selected
     if (figma.currentPage.selection.length < 2) {
@@ -39,17 +39,23 @@ function alignHorizontal() {
     //elements selected
     let nodeSelected = figma.currentPage.selection;
     for (const selected of nodeSelected) {
-        let gapX = selected.width + gap;
+        let spacingX = selected.width + spacing;
         selected.x = positionX;
         selected.y = positionY;
-        positionX += gapX;
+        positionX += spacingX;
     }
-    figma.notify("Objects vertically aligned!");
+    figma.notify("Objects horizontally aligned!");
 }
 figma.ui.onmessage = (msg) => {
     if (msg.type === "align-objects") {
-        gap = msg.definedGap;
-        alignVertical();
+        spacing = msg.definedSpacing;
+        //determing the kind of layout
+        if (msg.layout === "vertical") {
+            alignVertical();
+        }
+        else if (msg.layout === "horizontal") {
+            alignHorizontal();
+        }
     }
     figma.viewport.scrollAndZoomIntoView(figma.currentPage.selection);
     figma.closePlugin();

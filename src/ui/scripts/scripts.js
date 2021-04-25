@@ -2,7 +2,7 @@
 const alignObjectsButton = document.querySelector("#align-objects");
 const cancelButton = document.querySelector("#cancel");
 const layoutMenu = document.querySelector("#layout");
-const gapInput = document.querySelector("#gap");
+const spacingInput = document.querySelector("#spacing");
 
 //on load function
 document.addEventListener("DOMContentLoaded", function () {
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
 selectMenu.init();
 
 //event listeners
-gapInput.oninput = () => {
+spacingInput.oninput = () => {
   formValidation();
 };
 layoutMenu.onchange = () => {
@@ -28,7 +28,7 @@ cancelButton.onclick = () => {
 
 //form validation
 var formValidation = function (event) {
-  if (layoutMenu.value === "" || gapInput.value === "") {
+  if (layoutMenu.value === "" || spacingInput.value === "") {
     alignObjectsButton.disabled = true;
   } else {
     alignObjectsButton.disabled = false;
@@ -37,14 +37,14 @@ var formValidation = function (event) {
 
 //functions
 function alignObjects() {
-  const definedGap = parseInt(gapInput.value, 10);
+  const definedSpacing = parseInt(spacingInput.value, 10);
   parent.postMessage(
     {
       pluginMessage: {
         type: "align-objects",
-        gap: gapInput.value,
+        spacing: spacingInput.value,
         layout: layoutMenu.value,
-        definedGap,
+        definedSpacing,
       },
     },
     "*"
