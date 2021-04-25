@@ -15,7 +15,7 @@ let spacing: number;
 function alignVertical() {
   //check if there are enough objects selected
   if (figma.currentPage.selection.length < 2) {
-    figma.closePlugin("Select at least 2 Objects");
+    figma.notify("Select at least 2 Objects");
     return;
   }
 
@@ -39,8 +39,8 @@ function alignVertical() {
 function alignHorizontal() {
   //check if there are enough objects selected
   if (figma.currentPage.selection.length < 2) {
-    figma.closePlugin("Select at least 2 Objects");
-    return;
+    figma.notify("Select at least 2 Objects");
+    return; 
   }
 
   //1st item x and y

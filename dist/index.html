@@ -2063,16 +2063,9 @@
   </head>
   <body>
     <div class="p-xxsmall">
-      <!-- Select menu -->
+      <!-- Select layout -->
       <div class="label type--large">Layout direction</div>
-      <select id="layout" class="select-menu mb-xxsmall">
-        <!-- <option value="">Please select a layout...</option> -->
-        <option value="vertical">Vertical</option>
-        <option value="horizontal">Horizontal</option>
-        <!-- <option value="circle">Circle</option> -->
-      </select>
-
-      <!-- <div class="radio">
+      <div class="radio">
         <input
           id="layout-vertical"
           type="radio"
@@ -2092,12 +2085,12 @@
           name="radioGroup"
         />
         <label for="layout-horizontal" class="radio__label">Horizontal</label>
-      </div> -->
+      </div>
 
-      <!-- Gap input -->
+      <!-- Spacing input -->
       <div class="label">Spacing</div>
       <div class="input input--with-icon mb-xxsmall">
-        <div class="icon">#</div>
+        <div class="icon icon--distribute-vertical-spacing"></div>
         <input id="spacing" type="input" class="input__field" value="16" />
       </div>
 
@@ -2588,8 +2581,9 @@
     //vars
     const alignObjectsButton = document.querySelector("#align-objects");
     const cancelButton = document.querySelector("#cancel");
-    const layoutMenu = document.querySelector("#layout");
+    // const layoutMenu = document.querySelector("#layout");
     const spacingInput = document.querySelector("#spacing");
+    // const layoutSelected = document.querySelector('input[name="radioGroup"]');
 
     //on load function
     document.addEventListener("DOMContentLoaded", function () {
@@ -2603,9 +2597,10 @@
     spacingInput.oninput = () => {
       formValidation();
     };
-    layoutMenu.onchange = () => {
-      formValidation();
-    };
+    // layoutMenu.onchange = () => {
+    //   formValidation();
+    // };
+
     alignObjectsButton.onclick = () => {
       alignObjects();
     };
@@ -2615,7 +2610,7 @@
 
     //form validation
     var formValidation = function (event) {
-      if (layoutMenu.value === "" || spacingInput.value === "") {
+      if (spacingInput.value === "") {
         alignObjectsButton.disabled = true;
       } else {
         alignObjectsButton.disabled = false;
@@ -2625,17 +2620,22 @@
     //functions
     function alignObjects() {
       const definedSpacing = parseInt(spacingInput.value, 10);
+      const layoutSelected = document.querySelector(
+        'input[name="radioGroup"]:checked'
+      ).value;
+
       parent.postMessage(
         {
           pluginMessage: {
             type: "align-objects",
             spacing: spacingInput.value,
-            layout: layoutMenu.value,
+            layout: layoutSelected,
             definedSpacing,
           },
         },
         "*"
       );
+      console.log(layoutSelected.value);
     }
     function cancel() {
       parent.postMessage({ pluginMessage: { type: "cancel" } }, "*");
