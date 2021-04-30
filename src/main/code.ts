@@ -1,13 +1,4 @@
-// This plugin will open a modal to prompt the user to enter a number, and
-// it will then create that many of the chose shape on screen
-
-// This shows the HTML page in "index.html".
-
-// Calls to "parent.postMessage" from within the HTML page will trigger this
-// callback. The callback will be passed the "pluginMessage" property of the
-// posted message.
-
-figma.showUI(__html__, { width: 232, height: 248 });
+figma.showUI(__html__, { width: 232, height: 254 });
 
 let spacing: number;
 
@@ -15,7 +6,7 @@ let spacing: number;
 function alignVertical() {
   //check if there are enough objects selected
   if (figma.currentPage.selection.length < 2) {
-    figma.closePlugin("Select at least 2 Objects");
+    figma.notify("Select at least 2 Objects");
     return;
   }
 
@@ -39,8 +30,8 @@ function alignVertical() {
 function alignHorizontal() {
   //check if there are enough objects selected
   if (figma.currentPage.selection.length < 2) {
-    figma.closePlugin("Select at least 2 Objects");
-    return;
+    figma.notify("Select at least 2 Objects");
+    return; 
   }
 
   //1st item x and y
