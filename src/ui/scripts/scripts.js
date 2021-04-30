@@ -1,9 +1,9 @@
 //vars
 const alignObjectsButton = document.querySelector("#align-objects");
 const cancelButton = document.querySelector("#cancel");
-// const layoutMenu = document.querySelector("#layout");
 const spacingInput = document.querySelector("#spacing");
-// const layoutSelected = document.querySelector('input[name="radioGroup"]');
+
+var radios = document.querySelectorAll('input[name="radioGroup"]');
 
 //on load function
 document.addEventListener("DOMContentLoaded", function () {
@@ -17,9 +17,6 @@ selectMenu.init();
 spacingInput.oninput = () => {
   formValidation();
 };
-// layoutMenu.onchange = () => {
-//   formValidation();
-// };
 
 alignObjectsButton.onclick = () => {
   alignObjects();
@@ -38,24 +35,42 @@ var formValidation = function (event) {
 };
 
 //functions
+
+//check radio selected
+function checkSelection(event) {
+  const spacingIcon = document.querySelector("#spacing-icon");
+  if (this.value === "vertical") {
+    console.log("vertical");
+    spacingIcon.classList.remove("icon--distribute-horizontal-spacing");
+    spacingIcon.classList.add("icon--distribute-vertical-spacing");
+  } else if (this.value === "horizontal") {
+    console.log("horizontal");
+    spacingIcon.classList.remove("icon--distribute-vertical-spacing");
+    spacingIcon.classList.add("icon--distribute-horizontal-spacing");
+  }
+}
+
+Array.prototype.forEach.call(radios, function (radio) {
+  radio.addEventListener("change", checkSelection);
+});
+
 function alignObjects() {
   const definedSpacing = parseInt(spacingInput.value, 10);
   const layoutSelected = document.querySelector(
     'input[name="radioGroup"]:checked'
-  ).value;
+  );
 
   parent.postMessage(
     {
       pluginMessage: {
         type: "align-objects",
         spacing: spacingInput.value,
-        layout: layoutSelected,
+        layout: layoutSelected.value,
         definedSpacing,
       },
     },
     "*"
   );
-  console.log(layoutSelected.value);
 }
 function cancel() {
   parent.postMessage({ pluginMessage: { type: "cancel" } }, "*");
