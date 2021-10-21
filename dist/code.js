@@ -52,5 +52,5 @@ figma.ui.onmessage = (msg) => {
         }
     }
     figma.viewport.scrollAndZoomIntoView(figma.currentPage.selection);
-    figma.closePlugin();
+    // figma.closePlugin();
 };

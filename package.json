@@ -1,7 +1,7 @@
 {
-  "name": "frontend-boilerplate",
-  "version": "1.0.0",
-  "description": "Boilerplate for creating Figma Plugins",
+  "name": "set-layaout-direction",
+  "version": "1.1.0",
+  "description": "A tiny plugin to align any selected object in a column or row with a custom spacing without using Auto layout.",
   "main": "gulpfile.js",
   "scripts": {
     "build": "gulp --production",

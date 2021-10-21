@@ -1,5 +1,6 @@
 # Change Layout Direction - Figma Plugin
-A tiny plugin to align any selected object in a column or row with a custom spacing without using Auto layout.
+A tiny plugin to align any selected object in a column or row with a custom spacing without using Auto layout. 
+Useful to organize big group of variants.
 
 * Select some objects
 * Run the plugin

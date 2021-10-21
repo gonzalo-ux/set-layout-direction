@@ -31,7 +31,7 @@ function alignHorizontal() {
   //check if there are enough objects selected
   if (figma.currentPage.selection.length < 2) {
     figma.notify("Select at least 2 Objects");
-    return; 
+    return;
   }
 
   //1st item x and y
@@ -55,14 +55,12 @@ figma.ui.onmessage = (msg) => {
     spacing = msg.definedSpacing;
 
     //determing the kind of layout
-    if(msg.layout === "vertical"){
+    if (msg.layout === "vertical") {
       alignVertical();
-    }
-    else if(msg.layout === "horizontal"){
+    } else if (msg.layout === "horizontal") {
       alignHorizontal();
     }
-    
   }
   figma.viewport.scrollAndZoomIntoView(figma.currentPage.selection);
-  figma.closePlugin();
+  // figma.closePlugin();
 };
